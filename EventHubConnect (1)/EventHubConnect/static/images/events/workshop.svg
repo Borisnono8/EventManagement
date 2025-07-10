@@ -1,0 +1,8 @@
+<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+    <rect width="400" height="200" fill="#ffc107"/>
+    <rect x="160" y="60" width="80" height="60" fill="black" opacity="0.8"/>
+    <rect x="140" y="130" width="120" height="20" fill="black" opacity="0.6"/>
+    <circle cx="180" cy="90" r="8" fill="#ffc107"/>
+    <circle cx="220" cy="90" r="8" fill="#ffc107"/>
+    <text x="200" y="180" text-anchor="middle" fill="black" font-size="16" font-weight="bold">WORKSHOP</text>
+</svg>

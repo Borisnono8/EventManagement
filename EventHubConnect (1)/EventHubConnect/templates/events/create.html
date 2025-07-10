@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+
+{% block title %}Create Event - Event Management System{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h4><i class="fas fa-plus me-2"></i>Create New Event</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    {{ form.hidden_tag() }}
+                    
+                    <div class="mb-3">
+                        {{ form.title.label(class="form-label") }}
+                        {{ form.title(class="form-control") }}
+                        {% if form.title.errors %}
+                            <div class="text-danger">
+                                {% for error in form.title.errors %}
+                                    <small>{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="mb-3">
+                        {{ form.description.label(class="form-label") }}
+                        {{ form.description(class="form-control", rows="4") }}
+                        {% if form.description.errors %}
+                            <div class="text-danger">
+                                {% for error in form.description.errors %}
+                                    <small>{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                {{ form.start_datetime.label(class="form-label") }}
+                                {{ form.start_datetime(class="form-control") }}
+                                {% if form.start_datetime.errors %}
+                                    <div class="text-danger">
+                                        {% for error in form.start_datetime.errors %}
+                                            <small>{{ error }}</small>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                {{ form.end_datetime.label(class="form-label") }}
+                                {{ form.end_datetime(class="form-control") }}
+                                {% if form.end_datetime.errors %}
+                                    <div class="text-danger">
+                                        {% for error in form.end_datetime.errors %}
+                                            <small>{{ error }}</small>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        {{ form.location.label(class="form-label") }}
+                        {{ form.location(class="form-control") }}
+                        {% if form.location.errors %}
+                            <div class="text-danger">
+                                {% for error in form.location.errors %}
+                                    <small>{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="mb-3">
+                        {{ form.venue_details.label(class="form-label") }}
+                        {{ form.venue_details(class="form-control", rows="3") }}
+                        {% if form.venue_details.errors %}
+                            <div class="text-danger">
+                                {% for error in form.venue_details.errors %}
+                                    <small>{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                {{ form.max_attendees.label(class="form-label") }}
+                                {{ form.max_attendees(class="form-control") }}
+                                {% if form.max_attendees.errors %}
+                                    <div class="text-danger">
+                                        {% for error in form.max_attendees.errors %}
+                                            <small>{{ error }}</small>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                                <div class="form-text">Leave blank for unlimited attendees</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                {{ form.registration_deadline.label(class="form-label") }}
+                                {{ form.registration_deadline(class="form-control") }}
+                                {% if form.registration_deadline.errors %}
+                                    <div class="text-danger">
+                                        {% for error in form.registration_deadline.errors %}
+                                            <small>{{ error }}</small>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                                <div class="form-text">Leave blank for no deadline</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                {{ form.event_type.label(class="form-label") }}
+                                {{ form.event_type(class="form-select") }}
+                                {% if form.event_type.errors %}
+                                    <div class="text-danger">
+                                        {% for error in form.event_type.errors %}
+                                            <small>{{ error }}</small>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    {{ form.is_active(class="form-check-input") }}
+                                    {{ form.is_active.label(class="form-check-label") }}
+                                </div>
+                                {% if form.is_active.errors %}
+                                    <div class="text-danger">
+                                        {% for error in form.is_active.errors %}
+                                            <small>{{ error }}</small>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ url_for('events.list_events') }}" class="btn btn-secondary">
+                            <i class="fas fa-times me-1"></i>Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save me-1"></i>Create Event
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Set default datetime values
+    document.addEventListener('DOMContentLoaded', function() {
+        const now = new Date();
+        const tomorrow = new Date(now);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        
+        const formatDateTime = (date) => {
+            return date.toISOString().slice(0, 16);
+        };
+        
+        const startInput = document.getElementById('start_datetime');
+        const endInput = document.getElementById('end_datetime');
+        
+        if (!startInput.value) {
+            startInput.value = formatDateTime(tomorrow);
+        }
+        
+        if (!endInput.value) {
+            const endTime = new Date(tomorrow);
+            endTime.setHours(endTime.getHours() + 2);
+            endInput.value = formatDateTime(endTime);
+        }
+    });
+</script>
+{% endblock %}

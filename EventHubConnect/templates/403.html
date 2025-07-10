@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Access Denied - Event Management System{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="text-center">
+            <div class="mb-4">
+                <i class="fas fa-lock fa-5x text-danger"></i>
+            </div>
+            <h1 class="display-4 text-danger">403</h1>
+            <h2 class="mb-4">Access Denied</h2>
+            <p class="lead text-muted mb-4">
+                You don't have permission to access this resource. This might be because:
+            </p>
+            
+            <div class="alert alert-warning text-start">
+                <ul class="mb-0">
+                    <li>You need to be logged in to access this page</li>
+                    <li>Your user role doesn't have the required permissions</li>
+                    <li>You're trying to access someone else's private content</li>
+                    <li>The resource requires organizer privileges</li>
+                </ul>
+            </div>
+            
+            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('events.list_events') }}" class="btn btn-primary">
+                        <i class="fas fa-calendar me-1"></i>View Events
+                    </a>
+                    <a href="{{ url_for('users.dashboard') }}" class="btn btn-outline-primary">
+                        <i class="fas fa-tachometer-alt me-1"></i>My Dashboard
+                    </a>
+                {% else %}
+                    <a href="{{ url_for('users.login') }}" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt me-1"></i>Login
+                    </a>
+                    <a href="{{ url_for('users.register') }}" class="btn btn-outline-primary">
+                        <i class="fas fa-user-plus me-1"></i>Register
+                    </a>
+                {% endif %}
+                <a href="{{ url_for('index') }}" class="btn btn-secondary">
+                    <i class="fas fa-home me-1"></i>Home
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Additional Help Section -->
+<div class="row mt-5">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-question-circle me-2"></i>Need Help?</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>For Attendees:</h6>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check-circle text-success me-2"></i>Browse and register for events</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i>View your event registrations</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i>Manage your profile</li>
+                            <li><i class="fas fa-times-circle text-danger me-2"></i>Cannot create or manage events</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>For Organizers:</h6>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check-circle text-success me-2"></i>All attendee permissions</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i>Create and manage events</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i>View event attendee lists</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i>Access organizer dashboard</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="mt-3">
+                    <p class="text-muted mb-0">
+                        <i class="fas fa-info-circle me-2"></i>
+                        If you believe you should have access to this resource, please contact support or try logging in with the appropriate account.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

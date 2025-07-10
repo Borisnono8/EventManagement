@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome - Event Management System{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <!-- Hero Section -->
+        <div class="text-center mb-5">
+            <h1 class="display-4 mb-3">
+                <i class="fas fa-calendar-alt text-primary me-3"></i>
+                Event Management System
+            </h1>
+            <p class="lead text-muted">Professional platform for organizing and attending events</p>
+        </div>
+
+        <!-- Features Section -->
+        <div class="row g-4 mb-5">
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-plus-circle fa-3x text-primary"></i>
+                        </div>
+                        <h5 class="card-title">Create Events</h5>
+                        <p class="card-text">Organizers can create and manage professional events with detailed information and registration tracking.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-users fa-3x text-success"></i>
+                        </div>
+                        <h5 class="card-title">Attend Events</h5>
+                        <p class="card-text">Browse and register for events that interest you. Track your registrations and manage your event schedule.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-chart-line fa-3x text-info"></i>
+                        </div>
+                        <h5 class="card-title">Track Attendance</h5>
+                        <p class="card-text">Organizers can monitor event registrations and attendee lists in real-time through the dashboard.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sample Events Section -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <h3 class="text-center mb-4">
+                    <i class="fas fa-star me-2"></i>
+                    Featured Event Types
+                </h3>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='images/events/conference.svg') }}" 
+                         class="card-img-top" alt="Conference" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h6 class="card-title">Conferences</h6>
+                        <p class="card-text text-muted">Professional conferences and seminars</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='images/events/networking.svg') }}" 
+                         class="card-img-top" alt="Networking" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h6 class="card-title">Networking</h6>
+                        <p class="card-text text-muted">Business networking events</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='images/events/workshop.svg') }}" 
+                         class="card-img-top" alt="Workshop" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h6 class="card-title">Workshops</h6>
+                        <p class="card-text text-muted">Educational workshops and training</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='images/events/seminar.svg') }}" 
+                         class="card-img-top" alt="Seminar" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h6 class="card-title">Seminars</h6>
+                        <p class="card-text text-muted">Academic and professional seminars</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="card bg-primary text-white">
+                    <div class="card-body text-center py-5">
+                        <h4 class="card-title mb-3">Ready to Get Started?</h4>
+                        <p class="card-text mb-4">Join our platform to create events or register for exciting events in your area.</p>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                            <a href="{{ url_for('users.register') }}" class="btn btn-light btn-lg me-md-2">
+                                <i class="fas fa-user-plus me-2"></i>Register Now
+                            </a>
+                            <a href="{{ url_for('events.list_events') }}" class="btn btn-outline-light btn-lg">
+                                <i class="fas fa-calendar me-2"></i>Browse Events
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
